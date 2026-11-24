@@ -46,7 +46,68 @@ document.addEventListener('DOMContentLoaded', () => {
         openBtn.addEventListener('click', closeEntryScreen);
     }
     
+    // Audio Player & Autoplay Logic
+    const bgAudio = document.getElementById('bg-audio');
+    const musicBtn = document.getElementById('music-btn');
+
+    function updateMusicState(playing) {
+        if (!musicBtn) return;
+        if (playing) {
+            musicBtn.classList.add('playing');
+            musicBtn.setAttribute('aria-label', 'Pause background music');
+        } else {
+            musicBtn.classList.remove('playing');
+            musicBtn.setAttribute('aria-label', 'Play background music');
+        }
+    }
+
+    function playAudio() {
+        if (bgAudio && bgAudio.paused) {
+            const playPromise = bgAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    updateMusicState(true);
+                }).catch(() => {
+                    updateMusicState(false);
+                });
+            }
+        }
+    }
+
+    function pauseAudio() {
+        if (bgAudio && !bgAudio.paused) {
+            bgAudio.pause();
+            updateMusicState(false);
+        }
+    }
+
+    function toggleAudio() {
+        if (!bgAudio) return;
+        if (bgAudio.paused) {
+            playAudio();
+        } else {
+            pauseAudio();
+        }
+    }
+
+    if (musicBtn) {
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleAudio();
+        });
+    }
+
+    // Try starting audio on first user interaction anywhere
+    const startAudioOnFirstInteraction = () => {
+        playAudio();
+        document.removeEventListener('click', startAudioOnFirstInteraction);
+        document.removeEventListener('touchstart', startAudioOnFirstInteraction);
+    };
+    document.addEventListener('click', startAudioOnFirstInteraction);
+    document.addEventListener('touchstart', startAudioOnFirstInteraction);
+
     function closeEntryScreen() {
+        playAudio();
         if(!entryScreen.classList.contains('hidden')){
             entryScreen.classList.add('hidden');
             setTimeout(() => {

@@ -275,7 +275,112 @@ h6 {
     color: #888;
 }
 
-/* Details Section */
+/* Floating Music Control */
+.music-control-wrapper {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.music-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    padding: 8px 16px 8px 12px;
+    border-radius: 9999px;
+    cursor: pointer;
+    color: var(--primary-color);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+    font-family: var(--font-body);
+}
+
+.music-btn:hover {
+    background: #ffffff;
+    border-color: var(--accent-color);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25);
+}
+
+.music-icon-wrapper {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+}
+
+.music-icon {
+    width: 18px;
+    height: 18px;
+    transition: opacity 0.3s ease;
+}
+
+.music-waves {
+    display: none;
+    align-items: flex-end;
+    gap: 2.5px;
+    height: 14px;
+}
+
+.wave-bar {
+    width: 2.5px;
+    background-color: var(--accent-color);
+    border-radius: 1px;
+    height: 4px;
+}
+
+.music-btn.playing .music-note-icon {
+    display: none;
+}
+
+.music-btn.playing .music-waves {
+    display: flex;
+}
+
+.music-btn.playing .wave-1 {
+    animation: musicWave 1s infinite ease-in-out;
+}
+
+.music-btn.playing .wave-2 {
+    animation: musicWave 1.2s infinite ease-in-out 0.2s;
+}
+
+.music-btn.playing .wave-3 {
+    animation: musicWave 0.9s infinite ease-in-out 0.4s;
+}
+
+@keyframes musicWave {
+    0%, 100% {
+        height: 3px;
+    }
+    50% {
+        height: 14px;
+    }
+}
+
+.music-btn-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .music-control-wrapper {
+        bottom: 16px;
+        right: 16px;
+    }
+}
 .details-section {
     background-color: #f8f6f2;
     text-align: center;
