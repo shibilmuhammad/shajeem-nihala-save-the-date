@@ -607,6 +607,7 @@ footer .names {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center top;
     border: 4px solid #fff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     background-color: #fff;
@@ -883,6 +884,7 @@ html.lenis {
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center top;
     background: #fff;
     display: block;
     transition: transform 0.5s ease;
@@ -1005,6 +1007,7 @@ html.lenis {
     height: 68px;
     border-radius: 50%;
     object-fit: cover;
+    object-position: center top;
     border: 3px solid var(--accent-color);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
