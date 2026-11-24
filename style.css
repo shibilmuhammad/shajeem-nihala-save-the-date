@@ -112,8 +112,8 @@ h6 {
     background-position: center 20%;
     z-index: 1;
     will-change: transform;
-    filter: blur(4px);
-    -webkit-filter: blur(4px);
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
     transform: scale(1.04);
 }
 
