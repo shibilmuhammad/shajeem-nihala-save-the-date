@@ -281,15 +281,42 @@ h6 {
     text-align: center;
 }
 
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
 .details-card {
     background: #fff;
     max-width: 600px;
+    width: 100%;
     margin: 0 auto;
-    padding: 5rem 3rem;
+    padding: 4rem 2.5rem;
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
     border-radius: 8px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.event-badge {
+    display: inline-block;
+    align-self: center;
+    padding: 0.35rem 1.1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: rgba(212, 175, 55, 0.12);
+    color: var(--accent-color);
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
 }
 
 .details-card::before {
@@ -1024,6 +1051,11 @@ html.lenis {
 
     .time-box .number {
         font-size: 2.5rem;
+    }
+
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .details-card {
