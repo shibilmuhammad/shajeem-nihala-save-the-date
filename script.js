@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
     lenis.on('scroll', (e) => {
         if (heroBg && window.scrollY < window.innerHeight) {
             // Apple-like subtle scroll scale and translate on hero
-            heroBg.style.transform = `translateY(${window.scrollY * 0.4}px) scale(${1 + window.scrollY * 0.0002})`;
+            heroBg.style.transform = `translateY(${window.scrollY * 0.4}px) scale(${1.04 + window.scrollY * 0.0002})`;
         }
     });
 
