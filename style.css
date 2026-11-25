@@ -112,6 +112,8 @@ h6 {
     background-position: center 20%;
     z-index: 1;
     will-change: transform;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
     filter: blur(2px);
     -webkit-filter: blur(2px);
     transform: scale(1.04);
@@ -382,88 +384,296 @@ h6 {
         right: 16px;
     }
 }
+/* ==========================================================================
+   MODERN WEDDING TIMELINE SECTION
+   ========================================================================== */
 .details-section {
-    background-color: #f8f6f2;
-    text-align: center;
-}
-
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-    max-width: 960px;
-    margin: 0 auto;
-    align-items: stretch;
-}
-
-.details-card {
-    background: #fff;
-    max-width: 600px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 4rem 2.5rem;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-    border-radius: 8px;
+    background-color: #fbf9f6;
+    padding: 6rem 0;
     position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
-.event-badge {
+.timeline-header-wrap {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-kicker {
     display: inline-block;
-    align-self: center;
-    padding: 0.35rem 1.1rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+}
+
+.section-subtitle {
+    font-size: 1.05rem;
+    color: #666;
+    max-width: 560px;
+    margin: 0.5rem auto 0;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.wedding-timeline {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 10px;
+}
+
+/* Day Markers */
+.timeline-day-group {
+    margin-bottom: 3rem;
+}
+
+.timeline-day-group:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-day-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.marker-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 8px 24px;
+    border-radius: 9999px;
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.12);
+}
+
+.marker-day {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--primary-color);
+}
+
+.marker-dot {
+    color: var(--accent-color);
+    font-size: 0.75rem;
+}
+
+.marker-date {
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 1.5px;
-    text-transform: uppercase;
-    background: rgba(212, 175, 55, 0.12);
     color: var(--accent-color);
-    border-radius: 20px;
-    margin-bottom: 0.8rem;
 }
 
-.details-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: var(--accent-color);
-}
-
-.icon-wrapper {
-    color: var(--accent-color);
-    margin-bottom: 1.5rem;
-}
-
-.details-card h3 {
-    font-size: 2.4rem;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.details-card .date {
-    font-weight: 500;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: #444;
-}
-
-.details-card .time {
-    color: #777;
+/* Event Cards with Vertical Spine */
+.timeline-event-card {
+    display: flex;
+    gap: 22px;
+    position: relative;
     margin-bottom: 2rem;
-    font-size: 1.1rem;
 }
 
-.details-card .venue {
-    font-style: italic;
-    color: #555;
-    margin-bottom: 3rem;
-    font-size: 1.15rem;
+.timeline-event-card:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-gutter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 36px;
+    flex-shrink: 0;
+}
+
+.timeline-node {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-event-card:hover .timeline-node {
+    background: var(--accent-color);
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+.timeline-node.highlight-node {
+    background: linear-gradient(135deg, #d4af37, #b89324);
+    color: #ffffff;
+    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+}
+
+.timeline-stem {
+    width: 2px;
+    flex: 1;
+    background: linear-gradient(to bottom, rgba(212, 175, 55, 0.5), rgba(212, 175, 55, 0.15));
+    margin-top: 6px;
+    margin-bottom: -6px;
+}
+
+.timeline-stem.last-stem {
+    display: none;
+}
+
+/* Card Body */
+.timeline-card-body {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2.2rem 2.4rem;
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    text-align: left;
+}
+
+.timeline-event-card:hover .timeline-card-body {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(212, 175, 55, 0.14);
+    border-color: rgba(212, 175, 55, 0.45);
+}
+
+.highlight-event .timeline-card-body {
+    border-color: rgba(212, 175, 55, 0.35);
+    background: linear-gradient(to bottom, #ffffff, #fdfbf8);
+}
+
+.card-meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.card-time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background: rgba(44, 62, 80, 0.06);
+    padding: 5px 13px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+}
+
+.card-category-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.card-category-tag.ceremony {
+    background: rgba(212, 175, 55, 0.12);
+    color: #9c7b16;
+}
+
+.card-category-tag.reception {
+    background: rgba(142, 68, 173, 0.08);
+    color: #7d3c98;
+}
+
+.card-category-tag.grand {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.18), rgba(212, 175, 55, 0.08));
+    color: #8c6e14;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.card-event-title {
+    font-family: var(--font-heading);
+    font-size: 1.65rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.card-event-desc {
+    font-size: 0.92rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+}
+
+/* Location Box */
+.card-location-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #faf8f5;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.4rem;
+}
+
+.loc-icon-wrap {
+    color: var(--accent-color);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.loc-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.loc-venue-name {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    line-height: 1.35;
+}
+
+.loc-venue-sub {
+    font-size: 0.88rem;
+    color: #777;
+    margin-top: 3px;
+}
+
+/* Timeline Action Button */
+.timeline-map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.timeline-map-btn:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.3);
 }
 
 .btn {
@@ -837,7 +1047,10 @@ html.lenis {
 }
 
 .avatar-union-icon {
-    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
     animation: gentle-float 3s ease-in-out infinite alternate;
 }
 
@@ -922,7 +1135,10 @@ html.lenis {
 }
 
 .knot-ring {
-    font-size: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
     animation: gentle-float 4s ease-in-out infinite alternate;
 }
 
@@ -934,65 +1150,6 @@ html.lenis {
     letter-spacing: 1px;
 }
 
-/* Detail Card Rows */
-.detail-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 0.4rem;
-}
-
-.detail-row .date,
-.detail-row .time {
-    margin-bottom: 0 !important;
-}
-
-.detail-icon {
-    font-size: 1.1rem;
-}
-
-.venue-box {
-    background: #faf8f5;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 12px;
-    padding: 1.2rem;
-    margin: 1.8rem auto 2.2rem;
-    max-width: 400px;
-}
-
-.venue-label {
-    display: block;
-    font-size: 0.7rem;
-    letter-spacing: 2px;
-    color: #999;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-    font-weight: 600;
-}
-
-.venue-box .venue {
-    margin-bottom: 0;
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--primary-color);
-    font-style: normal;
-}
-
-.venue-box .venue-sub {
-    margin-top: 0.35rem;
-    margin-bottom: 0;
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: var(--accent-color);
-    letter-spacing: 0.5px;
-}
-
-.map-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
 
 /* Footer Avatar Duo */
 .footer-avatar-duo {
@@ -1014,7 +1171,10 @@ html.lenis {
 }
 
 .footer-duo-symbol {
-    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
 }
 
 .footer-subtext {
@@ -1162,16 +1322,48 @@ html.lenis {
         font-size: 2.5rem;
     }
 
-    .events-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    .wedding-timeline {
+        padding: 0;
     }
 
-    .details-card {
-        padding: 3rem 1.5rem;
+    .timeline-event-card {
+        gap: 14px;
     }
 
-    .details-card h3 {
-        font-size: 2rem;
+    .timeline-gutter {
+        width: 30px;
+    }
+
+    .timeline-node {
+        width: 30px;
+        height: 30px;
+    }
+
+    .timeline-node svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .timeline-card-body {
+        padding: 1.6rem 1.3rem;
+    }
+
+    .card-event-title {
+        font-size: 1.35rem;
+    }
+
+    .marker-pill {
+        padding: 6px 16px;
+    }
+
+    .marker-day,
+    .marker-date {
+        font-size: 0.68rem;
+    }
+
+    .card-meta-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
     }
 }
